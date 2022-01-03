@@ -1,127 +1,133 @@
 <?php
 
-class User
-{
-    // public $name;
-    // public $email;
+// use app\User;
 
-    // public function __construct($n, $e)
-    // {
-    //     $this->name = $n;
-    //     $this->email = $e;
-    // }
-    private $password = "1234";
-    public function __construct(
-        public $name,
-        public $email
-    ) {
-    }
-    public function info()
-    {
-        echo ("User name is {$this->name}. Email is {$this->email}!");
-    }
+use app\Model\Teacher as Test;
+// use app\User;
+use app\Student;
 
-    public static function display()
-    {
-        echo "I am static funciton";
-    }
-
-    private function anotherFunction()
-    {
-        self::display();
-    }
-
-    function __get($name)
-    {
-        echo "{$name} doesn't exist!";
-    }
-
-    function __set($name, $value)
-    {
-        echo "{$name} value is {$value}";
-    }
-
-    function __call($mName, $args)
-    {
-        echo "{$mName} args {$args[0]}";
-    }
-    // public function __destruct()
-    // {
-    //     echo "<br>Work Has Done!<br>";
-    // }
-}
-
-$u1 = new User("w", "s");
-echo $u1->$password;
-// class Student
+include("./app/Student.php");
+// include("./app/User.php");
+include("./app/Model/Teacher.php");
+// abstract class Person
 // {
-//     public $name = "Shahin";
-//     public $email = "s@mail.com";
-
-//     public function info()
+//     public function display()
 //     {
-//         echo ("User name is {$this->name}. Email is {$this->email}!");
+//         echo "Hello World!";
+//     }
+//     abstract public function great();
+// }
+
+// // $p = new Person();
+
+
+// class English extends Person
+// {
+//     public function great()
+//     {
+//         echo "Hello\n";
 //     }
 // }
-// $u1 = new User("Shahin", "s@mail.com");
-// $u2 = new User("user 2", "u2@mail.com");
 
-// $u1->name = "Test";
-// // $u1->info();
-// echo "<br>";
-// $u1->phone = "01754100";
-// $u1->phone = "1256";
-// echo "<br>";
-// $u1->test(2000);
-// echo $u1->phone;
-// $u2->info();
-
-// $s1 = new Student();
-// echo "<br>";
-
-// if ($s1 instanceof User) {
-//     echo "Ok";
-// } else {
-//     echo "No!";
+// class German extends Person
+// {
+//     public function great()
+//     {
+//         echo "Hola! \n";
+//     }
+// }
+// class Bangla extends Person
+// {
+//     public function great()
+//     {
+//         echo "Ki khbr! \n";
+//     }
 // }
 
+$u = new User();
 
-// class Great
+new Student();
+new Test();
+// function greatings($greats)
 // {
-
-//     function __invoke()
-//     {
-//         echo "<br>I am calling<br>";
+//     foreach ($greats as $g) {
+//         $g->great();
+//         echo "<br>";
 //     }
 // }
 
 
-// (new Great())();
 
 
-class Student extends User
+// interface Person
+// {
+//     public function great();
+// }
+
+// class English implements Person
+// {
+//     public function great()
+//     {
+//         echo "Hello";
+//     }
+// }
+
+// class Bangla implements Person
+// {
+//     public function great()
+//     {
+//         echo "Ki khbr!";
+//     }
+// }
+
+
+// $objs = [
+//     new English, new Bangla
+// ];
+
+
+// greatings($objs);
+
+
+// class A
+// {
+// }
+// class B extends A
+// {
+// }
+
+// trait AB
+// {
+// }
+// trait Helper
+// {
+// }
+// class C extends B
+// {
+//     use AB, Helper;
+// }
+
+// class Math
+// {
+//     public const PI = 3.1416;
+// }
+
+// echo Math::PI;
+
+
+class Model
 {
-    public static function display()
+    protected const TABLE_NAME = '';
+
+    public static function all()
     {
-        echo "Hello Bangladesh!";
+        return 'SELECT * FROM ' . static::TABLE_NAME;
     }
 }
 
-
-$s1 = new Student("Student 1", "S@mail.com");
-
-
-$s1->info();
-echo "<br>";
-Student::display();
-
-
-class Test
+class User extends Model
 {
-
-    public function __construct()
-    {
-    }
+    protected const TABLE_NAME = 'users';
 }
 
-$t1 = new Test();
+echo User::all();
