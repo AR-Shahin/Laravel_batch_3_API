@@ -1,16 +1,27 @@
 <?php
 
-use App\Http\Controllers\CategoryControler;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryControler;
+use App\Http\Controllers\CustomerControler;
+use App\Http\Controllers\ProductController;
 
+// Route::get('/', function () {
 
+//     // info('i am info');
 
-Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
 
-    // info('i am info');
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, "index"])->name('home');
+Route::post('/submit', [ProductController::class, "submit"])->name('submit');
 
+Route::resource('customer', CustomerControler::class);
+
+// Route::post('submit', function (Request $request) {
+//     return $request->all();
+// })->name('submit');
 // Route::get('abc', function () {
 //     return 'Abc Route!';
 // });

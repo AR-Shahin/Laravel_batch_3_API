@@ -19,14 +19,14 @@
         </style>
     </head>
  <body>
-     {{-- <a href="{{ url('user') }}">sss</a> --}}
-     <a href="{{ route('user','abs') }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
-    <a href="{{ route('user',['name' => 'Raihan']) }}">Habijabi</a>
+     <h2>Laravel</h2>
+
+     <form action="{{ route('submit') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+         <input type="text" name="name" placeholder="Enter Your Name"> <br>
+         <input type="email" name="email" placeholder="Enter Your Email"> <br>
+         <input type="file" name="data">
+         <button type="submit">Submit</button>
+     </form>
  </body>
 </html>
