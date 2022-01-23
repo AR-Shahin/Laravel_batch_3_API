@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryControler;
 use App\Http\Controllers\CustomerControler;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ValidateController;
 use App\Http\Controllers\ViewController;
 
 // Route::get('/', function () {
@@ -30,3 +32,15 @@ Route::post('/submit', [ProductController::class, "submit"])->name('submit');
 Route::get('test', [ViewController::class, 'index']);
 Route::get('abc', [ViewController::class, 'abcPage']);
 Route::get('admin-page', [ViewController::class, 'adminPage']);
+
+# Session Route
+
+Route::get('session-store', [SessionController::class, 'sessionStore']);
+Route::get('session-get', [SessionController::class, 'sessionGet']);
+Route::get('session-delete', [SessionController::class, 'sessionDelete']);
+
+
+# Validate
+
+Route::get('validate', [ValidateController::class, 'showForm']);
+Route::post('validate', [ValidateController::class, 'submitForm']);
