@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryControler;
 use App\Http\Controllers\CustomerControler;
+use App\Http\Controllers\DBController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ValidateController;
@@ -44,3 +45,11 @@ Route::get('session-delete', [SessionController::class, 'sessionDelete']);
 
 Route::get('validate', [ValidateController::class, 'showForm']);
 Route::post('validate', [ValidateController::class, 'submitForm']);
+
+
+# DB
+
+Route::get('insert', [DBController::class, 'insert'])->name('insert');
+Route::get('create', [DBController::class, 'create'])->name('create');
+Route::post('store', [DBController::class, 'store'])->name('store');
+Route::get('index', [DBController::class, 'index'])->name('index');
