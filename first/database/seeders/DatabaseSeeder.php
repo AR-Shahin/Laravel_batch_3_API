@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Student;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,14 +17,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Student::factory(20)->create();
         // \App\Models\User::factory(10)->create();
 
-        for ($i = 0; $i < 100; $i++) {
-            DB::table('users')->insert([
-                'name' => Str::random(10),
-                'email' => Str::random(10) . '@gmail.com',
-                'password' => Hash::make('password'),
-            ]);
-        }
+        // for ($i = 0; $i < 100; $i++) {
+        //     DB::table('users')->insert([
+        //         'name' => Str::random(10),
+        //         'email' => Str::random(10) . '@gmail.com',
+        //         'password' => Hash::make('password'),
+        //     ]);
+        // }
     }
 }

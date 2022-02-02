@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ValidateController;
 use App\Http\Controllers\ViewController;
+use App\Models\Student;
 
 // Route::get('/', function () {
 
@@ -53,3 +54,36 @@ Route::get('insert', [DBController::class, 'insert'])->name('insert');
 Route::get('create', [DBController::class, 'create'])->name('create');
 Route::post('store', [DBController::class, 'store'])->name('store');
 Route::get('index', [DBController::class, 'index'])->name('index');
+
+
+# Model
+
+Route::get('model', function () {
+
+    // return Student::multi()->get();
+    // return 1;
+    return  Student::create([
+        'name' => 'Shddddahin',
+        'email' => 'sddd@mail.com',
+        'is_active' => false,
+        'vote' => rand(100, 200)
+    ]);
+
+    // $student = new Student();
+    // $student->name = "Raihan";
+    // $student->email = "Raihan@mail.com";
+    // $student->is_active = false;
+    // $student->vote = 10;
+    // $student->save();
+
+    // return $student;
+
+    // return Student::where('vote', '<', 100)->get();
+
+    // return Student::findOrFail(200);
+    // return Student::findOrFail(1)->update([
+    //     'name' => 'Updated Name'
+    // ]);
+
+    // return Student::find(1)->delete();
+});
