@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -26,5 +28,8 @@ class DatabaseSeeder extends Seeder
                 'view' => rand(100, 200),
             ]);
         };
+
+        Category::factory(5)->create();
+        Product::factory(10)->create();
     }
 }
