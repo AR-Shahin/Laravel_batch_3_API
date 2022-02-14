@@ -12,11 +12,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::prefix('products')->controller(ProductController::class)->middleware('auth:sanctum')->group(function () {
+Route::prefix('products')->controller(ProductController::class)->group(function () {
     Route::get('/', 'getAllProduct');
     Route::post('/', 'store');
     Route::get('/{id}', 'show');
-    Route::put('/{id}', 'update');
+    Route::post('update/{id}', 'update');
     Route::delete('/{id}', 'delete');
 });
 
