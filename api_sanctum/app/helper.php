@@ -1,22 +1,29 @@
 <?php
 
-function sendSuccessResponse($data, $mgs = 'Data Retrieve Successfully', $code = 200)
+function sendSuccessResponse($result, $message = "Data Retrieve Successfully!", $code = 200)
 {
-    return response()->json([
+    $response = [
         'success' => true,
-        'message' => $mgs,
         'code' => $code,
-        'result' => $data
-    ], $code);
+        'message' => $message,
+        'data' => $result,
+    ];
+
+
+    return response()->json($response, $code);
 }
 
 
-function sendErrorResponse($data = [], $mgs = 'Something Went Wrong!', $code = 500)
+function sendErrorResponse($error, $errorMessages = [], $code = 404)
 {
-    return response()->json([
+    $response = [
         'success' => false,
-        'message' => $mgs,
         'code' => $code,
-        'result' => $data
-    ], $code);
+        'message' => $error,
+    ];
+
+    if (!empty($errorMessages)) {
+        $response['data'] = $errorMessages;
+    }
+    return response()->json($response, $code);
 }
