@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Movie::factory()->create();
+        // Movie::factory()->create();
     }
 }
