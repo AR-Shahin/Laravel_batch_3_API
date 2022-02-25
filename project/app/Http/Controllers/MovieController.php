@@ -27,7 +27,7 @@ class MovieController extends Controller
         // return $request->all();
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'unique:movies,name'],
-            'image' => ['required', 'mimes:png,jpg'],
+            'image' => ['mimes:png,jpg'],
         ]);
 
         if ($validator->fails()) {
@@ -37,7 +37,10 @@ class MovieController extends Controller
         try {
             $data = $validator->validated();
             $data['slug'] = str($data['name'])->slug();
-            $data['image'] = File::upload($request->file('image'), 'movie');
+            if ($request->hasFile('image')) {
+
+                $data['image'] = File::upload($request->file('image'), 'movie');
+            }
             $data['description'] = $request->description;
             $movie = Movie::create($data);
             if ($movie && $request->categories) {
