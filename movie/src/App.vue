@@ -6,7 +6,7 @@
     <router-link to="/register">Register</router-link> | 
     <router-link to="/dashboard">Dashboard</router-link> | 
     <router-link to="/single">Single</router-link> | 
-    <button>Logout</button>
+    <button @click="handle">Logout</button>
   </div>
   <router-view/>
 </template>
@@ -33,3 +33,34 @@
   color: #42b983;
 }
 </style>
+<script>
+   import axios from 'axios';
+import { reactive } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
+
+    export default {
+        setup(){
+            const user = reactive({
+                email : '',
+                password: ''
+            })
+            let token = localStorage.getItem('authToken')
+            let url = 'http://127.0.0.1:8000/api/v1';
+         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+            const router = useRouter();
+            const handle = () => {
+                axios.post(`${url}/customer/logout`,user).then(res => {
+                    console.log(res)
+                    localStorage.setItem('authToken', '')
+                    router.push('/login')
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+
+            return{
+            handle,user,url
+            }
+        }
+    }
+</script>
