@@ -6,7 +6,8 @@
     <router-link to="/register">Register</router-link> | 
     <router-link to="/dashboard">Dashboard</router-link> | 
     <router-link to="/single">Single</router-link> | 
-    <button @click="handle">Logout</button>
+    <!-- {{ checkIfAuth() }} -->
+    <button @click="handle" v-if="checkIfAuth()">Logout</button>
   </div>
   <router-view/>
 </template>
@@ -58,8 +59,11 @@ import { useRouter } from 'vue-router';
                 })
             }
 
+            const checkIfAuth = () => {
+                return localStorage.getItem('authToken')
+            }
             return{
-            handle,user,url
+            handle,user,url,checkIfAuth
             }
         }
     }

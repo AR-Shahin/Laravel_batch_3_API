@@ -9,8 +9,8 @@
             <p>{{data.movie.description}}</p>
             <h5>    <span v-for="cat in data.movie.categories" :key="cat.id">{{cat.name}} | </span></h5>
             <hr>
-            <form action="">
-               
+            <form action="" @submit.prevent="addToFvt">
+               <input type="hidden" name="" id="">
                 <button>Add To fabourite</button>
             </form>
         </div>
@@ -20,15 +20,17 @@
 <script>
 import axios from 'axios';
 import { onMounted, reactive } from '@vue/runtime-core'
-import { useRoute } from 'vue-router'
+import { useRouter,useRoute } from 'vue-router'
     export default {
         
         setup(){
         const data = reactive({
-          movie : []
+          movie : [],
+          movie_id : null
       })
       const route = useRoute()
         let url = 'http://127.0.0.1:8000/api/v1';
+        const router = useRouter()
         onMounted(() =>{
         axios.get(`${url}/movie/${route.params.id}`).then(res =>{
             console.log(res);
@@ -37,8 +39,18 @@ import { useRoute } from 'vue-router'
                     console.log(err);
                 })
             } )
+
+
+            const addToFvt = () =>{
+                axios.post(`${url}/add-fev`,{'movie_id' : data.movie.id}).then(res => {
+                    console.log(res)
+                    router.push('/')
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
             return{
-                url,route,data
+                url,route,data,addToFvt
             }
         }
     }
