@@ -17,7 +17,7 @@ class CustomerController extends Controller
 
     public function movies()
     {
-        $data = auth('customer_api')->user()->favourites;
+        $data = auth('customer_api')->user()->favourites->load('movie');
         return sendSuccessResponse($data);
     }
 }
